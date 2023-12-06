@@ -1,4 +1,4 @@
-#Categorize customers into segments (e.g., high spenders, frequent shoppers, one-time buyers)
+-- Categorize customers into segments
 SELECT
     id,
     first_name,
