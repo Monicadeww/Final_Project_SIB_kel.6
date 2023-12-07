@@ -41,21 +41,6 @@ KEY_DATA_PRODUCT_CATEGORIES= "df_product_categories"
 KEY_DATA_PRODUCTS="df_data_products"
 KEY_DATA_SUPPLIERS="df_suppliers"
 
-
-#SQL_CREATE_DIM_DATE = '''
-#DROP TABLE IF EXISTS dimensional.dim_date_test;
-#CREATE TABLE dimensional.dim_date_test (
-#  date_key INTEGER PRIMARY KEY,
-#  date DATE NOT NULL,
-#  day_of_week INTEGER NOT NULL,
-#  week INTEGER NOT NULL,
-#  month INTEGER NOT NULL,
-#  quarter INTEGER NOT NULL,
-#  year INTEGER NOT NULL
-#);
-#'''
-
-
 with DAG(
     dag_id="ETL_Kelompok_6",
     start_date=datetime(2023, 11, 21),
@@ -267,72 +252,39 @@ with DAG(
         engine = postgres_connecion()
         # hook = PostgresHook(postgres_conn_id='postgres_dw')
         # engine = hook.get_sqlalchemy_engine()
-        # id nama gender
-        # key fullnam jk
 
-
-        #name -> nama table
-        #con -> connection
-        #if_exist replace & append -> [t1] -> [t2] -> [t1,t2]
+        # Note = You have to create schema Data Modelling Metabase on your database or you can change it to public        
         print("=== SEDANG INSERT COUPON")
-        df_coupons.to_sql(name='coupons',schema  ='public', con=engine,
+        df_coupons.to_sql(name='coupons',schema  ='Data Modelling Metabase', con=engine,
                             if_exists='replace', index=False)
 
         print("=== SEDANG INSERT CUSTOMERS")
-        df_customers.to_sql(name='customer',schema = 'public', con=engine,
+        df_customers.to_sql(name='customer',schema = 'Data Modelling Metabase', con=engine,
                             if_exists='replace', index=False)
 
         print("=== SEDANG INSERT LOGIN ATTEMPS")
-        df_login_attemps.to_sql(name='login_attemps',schema='public',con=engine,
+        df_login_attemps.to_sql(name='login_attemps',schema='Data Modelling Metabase',con=engine,
                            if_exists='replace', index=False)
 
         print("=== SEDANG INSERT ORDERS ITEMS")
-        df_order_items.to_sql(name='order_items', schema='public', con=engine,
+        df_order_items.to_sql(name='order_items', schema='Data Modelling Metabase', con=engine,
                            if_exists='replace', index=False)
 
         print("=== SEDANG INSERT ORDERS")
-        df_orders.to_sql(name='orders',schema='public', con=engine,
+        df_orders.to_sql(name='orders',schema='Data Modelling Metabase', con=engine,
                            if_exists='replace', index=False)
 
         print("=== SEDANG INSERT PRODUCT CATEGORIES")
-        df_product_categories.to_sql(name='product_categories',schema='public',con=engine,
+        df_product_categories.to_sql(name='product_categories',schema='Data Modelling Metabase',con=engine,
                            if_exists='replace', index=False)
 
         print("=== SEDANG INSERT PRODUCT")
-        df_product.to_sql(name='products',schema='public',con=engine,
+        df_product.to_sql(name='products',schema='Data Modelling Metabase',con=engine,
                            if_exists='replace', index=False)
 
-
-        #raw
-        #id name
-        #5  test
-        #6  test
-        #1  test
-
-
-        #dim
-        #id name
-        #1  test
-        #2  test
         print("=== SEDANG INSERT SUPPLIERS")
-        df_suppliers.to_sql(name='suppliers',schema='public',con=engine,
+        df_suppliers.to_sql(name='suppliers',schema='Data Modelling Metabase',con=engine,
                            if_exists='replace', index=False)
-
-
-
-    #create_dim_table = PostgresOperator(
-    #        task_id="create_dim_date",
-    #        sql=SQL_CREATE_DIM_DATE,
-    #        postgres_conn_id="postgres_dw")
-
-   # insert_dim_table = PostgresOperator(
-   #         task_id="insert_dim_date",
-   #         sql='sql/insert.sql',
-   #         postgres_conn_id="postgres_dw")
-
-
-
-
 
     [fetch_data_json_coupons(),
      fetch_data_from_csv_customer(),
@@ -342,7 +294,6 @@ with DAG(
      fetch_data_from_excel_product_categories(),
      fetch_data_from_excel_products(),
      fetch_data_from_excel_suppliers()] >> transfrom_dataset() >> insert_to_database() 
-     #>> create_dim_table
 
 
 
