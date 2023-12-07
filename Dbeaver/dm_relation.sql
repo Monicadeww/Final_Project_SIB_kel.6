@@ -1,23 +1,3 @@
-
---fk dim-
-
-ALTER TABLE product_dim
-ADD CONSTRAINT fk_category
-FOREIGN KEY (category_id)
-REFERENCES fact.product_categories_dim(category_id);
-
-ALTER TABLE product_dim
-ADD CONSTRAINT fk_supplier
-FOREIGN KEY (supplier_id)
-REFERENCES supplier_dim (supplier_id);
-
-ALTER TABLE order_dim
-ADD CONSTRAINT fk_customer
-FOREIGN KEY (customer_id)
-REFERENCES customer_dim(customer_id);
-
-
-
 --fk fact--
 ALTER TABLE sales
 ADD CONSTRAINT fk_product
@@ -48,3 +28,8 @@ ALTER TABLE sales
 ADD CONSTRAINT fk_category
 FOREIGN KEY (category_id)
 REFERENCES category_dim(category_id);
+
+ALTER TABLE sales
+ADD CONSTRAINT fk_login
+FOREIGN KEY (customer_id)
+REFERENCES login_history_dim(login_id);
