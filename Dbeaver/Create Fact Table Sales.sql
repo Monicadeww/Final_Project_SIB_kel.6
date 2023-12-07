@@ -1,7 +1,7 @@
-CREATE SCHEMA Fact;
+CREATE SCHEMA "Fact and Dim Tables";
 
 -- Create the fact.sales table
-CREATE TABLE Fact.sales (
+CREATE TABLE "Fact and Dim Tables".sales (
 id serial PRIMARY KEY,
 order_id integer,
 product_id integer,
@@ -16,7 +16,7 @@ created_at date
 );
 
 -- Insert data into the fact.sales table using a SELECT statement
-INSERT INTO Fact.sales (
+INSERT INTO "Fact and Dim Tables".sales (
   order_id, 
   product_id, 
   customer_id, 
