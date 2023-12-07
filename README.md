@@ -1,5 +1,5 @@
 ## Final_Project_SIB_kel.6
-# Dibimbing - Kampus Merdeka 1 - Final Project Template
+# Dibimbing - Kampus Merdeka 1 - Final Project 
 
 ## How to
 - In order to spin up the containers, first you have to build all the Docker images needed using 
@@ -25,11 +25,11 @@ There is also requirements.txt, so if you want to add a library to the Airflow c
 
 *dags*
 
-This is were you put your dag files. This folder is already mounted on the container, hence any updates here will automatically take effect on the container side.
+This is where you put your dag files. This folder is already mounted on the container, hence any updates here will automatically take effect on the container side. Here you can run the ETL Process
 
 *data*
 
-This flder contains the data needed for your project. If you want to generate or add additional data, you can place them here.
+This folder contains the data needed for your project. If you want to generate or add additional data, you can place them here.
 
 *docker*
 
@@ -38,5 +38,13 @@ Here is the place where you can modify or add a new docker stack if you decide t
 *scripts*
 
 This folder contains script needed in order to automate an initializations process on docker-container setup.
+
+*metabase*
+
+This folder contains a collection of queries that you can run in the metabase, and you can build data visualizations with these queries.
+
+*dbeaver*
+
+This folder contains queries to be able to build relationships between data tables and here are the results of these queries.
 
 ---
