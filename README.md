@@ -1,20 +1,6 @@
 ## Final_Project_SIB_kel.6
 # Dibimbing - Kampus Merdeka 1 - Final Project 
 
-## How to
-- In order to spin up the containers, first you have to build all the Docker images needed using 
-    sh
-    make build
-    
-- Once all the images have been build up, you can try to spin up the containers using
-    sh
-    make spinup
-    
-- Once all the containers ready, you can try to
-    - Access the Airflow on port 8081
-    - Access the Metabase on port 3001, for the username and password, you can try to access the [.env](/.env) file
-    - Since we have 2 Postgres containers, you can use dataeng-warehouse-postgres container as your data warehouse and ignore the dataeng-ops-postgres container since it is only being used for the opetrational purposes.
----
 ## Folder Structure
 
 *main*
@@ -29,7 +15,7 @@ This is where you put your dag files. This folder is already mounted on the cont
 
 *data*
 
-This folder contains the data needed for your project. If you want to generate or add additional data, you can place them here.
+This folder contains the data needed for this final project. If you want to create or add additional data, you can place it here.
 
 *docker*
 
@@ -46,5 +32,10 @@ This folder contains a collection of queries that you can run in the metabase, a
 *dbeaver*
 
 This folder contains queries to be able to build relationships between data tables and here are the results of these queries.
+
+- Once all the containers ready, you can try to
+    - Access the Airflow on port 8081
+    - Access the Metabase on port 3001, for the username and password, you can try to access the [.env](/.env) file
+    - Since we have 2 Postgres containers, you can use dataeng-warehouse-postgres container as your data warehouse and ignore the dataeng-ops-postgres container since it is only being used for the opetrational purposes.
 
 ---
